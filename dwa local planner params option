@@ -1,0 +1,62 @@
+dwa local planner Parameters
+
+​
+
+local planner에서 사용하는 파라미터들은 YAML파일에 정의되어있습니다. DWA local planner에서 중요한 파라미터들은 다음과 같습니다.
+
+​
+
+Robot Configuration Parameters
+
+/acc_lim_x (default: 2.5): 로봇의 x방향 가속도 제한 (meters/s^2)
+
+/acc_lim_th (default: 3.2): 로봇의 각 가속도 제한(radians/s^2)
+
+/max_trans_vel (default: 0.55): 로봇의 최대 병진속도(translational velocity)의 절대값(m/s)
+
+/min_trans_vel (default: 0.1): 로봇의 최소 병진속도(translational velocity)의 절대값(m/s)
+
+/max_vel_x (default: 0.55): 로봇의 x방향 최대속도(m/s)
+
+/min_vel_x (default: 0.0): 로봇의 x방향 최소속도. 후진이 가능하게 하려면 음수 값을 설정(m/s)
+
+/max_rot_vel (default: 1.0): 로봇의 최대 회전속도의 절대값(rad/s)
+
+/min_rot_vel (default: 0.4): 로봇의 최소 회전속도의 절대값(rad/s)
+
+​
+
+Goal Tolerance Parameters
+
+/yaw_goal_tolerance (double, default: 0.05): 목표 자세와 로봇의 실제 자세와의 각도 오차(rad)
+
+/xy_goal_tolerance (double, default: 0.10): 목표 자세와 로봇의 실제 자세와의 x,y 위치 오차(meter)
+
+/latch_xy_goal_tolerance (bool, default: false): 만약 goal_tolerance가 latch되면, 로봇이 목표 xy위치에 도달했을 때 goal tolerance를 벗어나더라도 회전을 합니다.
+
+
+Forward Simulation Parameters
+
+/sim_time (default: 1.7): 해당 값의 시간동안의 시뮬레이션 계산. 예를 들어, 해당 값에 2를 설정하면 앞으로 2초간의 시뮬레이션 계산(초 단위)
+
+/sim_granularity (default: 0.025): 주어진 궤적의 포인트 사이의 스텝 사이즈(미터 단위)
+
+/vx_samples (default: 3): x 속도 공간에서의 샘플 수
+
+/vy_samples (default: 10): y 속도 공간에서의 샘플 수
+
+/vtheta_samples (default: 20): theta 속도(각속도) 공간에서의 샘플 수
+
+
+Trajectory Scoring Parameters
+
+/path_distance_bias (default: 32.0): 컨트롤러가 주어진 경로(global plan)에 가깝게 유지하도록 하는 가중치
+
+/goal_distance_bias (default: 24.0): 컨트롤러가 local goal에 도달하도록 하는 가중치 
+
+/occdist_scale (default: 0.01): 컨트롤러가 장애물을 피하도록 하는 가중치
+
+​
+
+즉, 경로에 대해 점수를 매길 때, 어떤 부분에 대해 더 점수를 줄 것이냐 하는 것입니다. 위 파라미터들의 경우, 주어진 경로를 잘 따라가는가? local goal에 잘 도착하는가? 장애물을 잘 피하는가? 입니다.
+[출처] ROS Navigation(5. Path Planning 2) (오픈소스 소프트웨어 & 하드웨어: 로봇 기술 공유 카페 (오로카)) | 작성자 Laplace
